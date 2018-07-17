@@ -15,7 +15,10 @@ var indexRoute  = require("./routes/index")
 var campgroundRoute = require("./routes/campground")
 var commentRoute = require("./routes/comment")
 
-mongoose.connect("mongodb://localhost/GoCamping");
+var port = process.env.PORT || 8080;
+var url = process.env.MONGOLAB_URI || "mongodb://localhost/GoCamping";
+
+mongoose.connect(url, { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -46,6 +49,6 @@ app.use("/", indexRoute);
 app.use("/campgrounds", campgroundRoute);
 app.use("/campgrounds/:id/comments", commentRoute);
 
-app.listen(8080, function(req, res){
-  console.log("GoCamping Server has started on port 8080!!");
+app.listen(port, function(req, res){
+  console.log(`GoCamping Server has started on port ${port}!!`);
 });
