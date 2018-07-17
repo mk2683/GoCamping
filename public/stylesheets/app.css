@@ -12,14 +12,14 @@ body,html {
     width: 100%;
 }
 
-.thumbnail {
+/*.thumbnail {
     padding: 0;
-}
+}*/
 
 .thumbnail .caption-full {
     padding: 9px;
 }
 
-#delete-form {
+.delete-form {
 	display: inline;
 }
